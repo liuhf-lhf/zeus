@@ -1,0 +1,13 @@
+package com.liuhf.warehourse.zeuswarehourse;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ZeusWarehourseApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ZeusWarehourseApplication.class, args);
+    }
+
+}

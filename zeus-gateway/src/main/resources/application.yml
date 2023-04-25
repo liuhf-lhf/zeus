@@ -1,0 +1,26 @@
+server:
+  port: 18000
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+    gateway:
+      enabled: true
+      routes:
+        - id: user
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**,/role/**,/menu/**
+      discovery:
+        locator:
+          enabled: true
+    loadbalancer:
+      nacos:
+        enabled: true
+
+
+
+
+

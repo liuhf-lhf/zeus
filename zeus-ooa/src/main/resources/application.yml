@@ -1,0 +1,15 @@
+server:
+  port: 18083
+spring:
+  application:
+    name: ooa-service
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+  datasource:
+    username: zeus
+    password: Liuhf@1995!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///zeus?serverTimeZone=UTC
+
+

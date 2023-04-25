@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-common/zeus-common-lang/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-common/zeus-common-lang/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-common/zeus-common-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-common/zeus-common-util/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-ooa/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-ooa/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-order/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-order/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-user/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-user/zeus-user-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-user/zeus-user-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-user/zeus-user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-user/zeus-user-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-warehourse/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zeus-warehourse/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

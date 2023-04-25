@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ApifoxUploaderProjectSetting">
+    <option name="apifoxAccessToken" value="APS-wHs383ywHE7eJzG3JtPrfNxHZYZjoUDJ" />
+    <option name="apifoxProjectIds">
+      <array>
+        <option value="# ModuleName:ProjectID,BaseFolderName" />
+        <option value="zeus-one-ext-http:2380810" />
+        <option value="zeus-user-service:2643105" />
+      </array>
+    </option>
+    <option name="yapiTokens" value="" />
+  </component>
+</project>
