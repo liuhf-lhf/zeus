@@ -4,15 +4,15 @@ import com.liuhf.common.lang.result.Result;
 import com.liuhf.common.lang.ZPage;
 import com.liuhf.user.api.dto.ZeusRoleDto;
 import com.liuhf.user.api.dto.ZeusUserDto;
+import com.liuhf.user.service.zeususerserivce.entity.ZeusRole;
 import com.liuhf.user.service.zeususerserivce.entity.ZeusUser;
-import com.liuhf.user.service.zeususerserivce.entity.vo.ZeusUserModifyVo;
-import com.liuhf.user.service.zeususerserivce.entity.vo.ZeusUserSaveVo;
-import com.liuhf.user.service.zeususerserivce.entity.vo.ZeusUserVo;
+import com.liuhf.user.service.zeususerserivce.entity.vo.*;
 import com.liuhf.user.service.zeususerserivce.service.ZeusUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -109,20 +109,28 @@ public class ZeusUserController {
      */
     @GetMapping("fu")
     public Result<ZeusUserDto> findByUsername(String username) {
+        return Result.success(this.service.findOneByUsername(username));
+    }
 
-        ZeusUser user = this.service.findOneByUsername(username);
-        Set<ZeusRoleDto> roleDtos = user.getZeusRoles().stream().map(r -> new ZeusRoleDto(r.getId(), r.getRoleCode(), r.getRoleName(), r.getStatus(), r.getCreateTime(), r.getUpdateTime())).collect(Collectors.toSet());
-        ZeusUserDto roleDto = new ZeusUserDto(user.getId(),
-                user.getUsername(),
-                user.getPassword(),
-                user.getHeadImg(),
-                user.getRealName(),
-                user.getPhone(),
-                user.getEmail(),
-                user.getLock(),
-                user.getCreateTime(),
-                user.getUpdateTime(),
-                roleDtos);
-        return Result.success(roleDto);
+    /**
+     * 用户授权
+     *
+     * @param ur
+     * @return
+     */
+    @PostMapping("auth")
+    public Result<Boolean> auth(@RequestBody UserRoleAuthVo ur) {
+        return Result.success(this.service.userAuthorization(ur.getUid(), ur.getRids()));
+    }
+
+    /**
+     * 查询用户拥有的角色
+     *
+     * @param uid
+     * @return
+     */
+    @GetMapping("urou/{uid}")
+    public Result<List<ZeusRoleVo>> findZeusUserRoleOfUser(@PathVariable Long uid) {
+        return Result.success(this.service.findZeusUserRoleOfUser(uid), ZeusRoleVo.class);
     }
 }

@@ -8,6 +8,7 @@ import java.util.Set;
 @Entity
 @Table(name = "zeus_user")
 public class ZeusUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -31,13 +32,13 @@ public class ZeusUser {
     @Column(name = "email", length = 50)
     private String email;
 
-    @Column(name = "`lock`", nullable = false,insertable = false)
+    @Column(name = "`lock`", nullable = false, insertable = false)
     private Integer lock;
 
-    @Column(name = "create_time", nullable = false,insertable = false,updatable = false)
+    @Column(name = "create_time", nullable = false, insertable = false, updatable = false)
     private Date createTime;
 
-    @Column(name = "update_time",insertable = false,updatable = false)
+    @Column(name = "update_time", insertable = false, updatable = false)
     private Date updateTime;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -45,8 +46,6 @@ public class ZeusUser {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<ZeusRole> zeusRoles = new LinkedHashSet<>();
-
-
 
 
     public Long getId() {

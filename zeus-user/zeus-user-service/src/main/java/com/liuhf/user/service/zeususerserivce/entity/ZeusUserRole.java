@@ -47,4 +47,12 @@ public class ZeusUserRole {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "ZeusUserRole{" +
+                "id=" + id +
+                ", user=" + user +
+                ", role=" + role +
+                '}';
+    }
 }

@@ -7,4 +7,9 @@ spring:
   cloud:
     nacos:
       server-addr: localhost:8848
-
+  jpa:
+    database: mysql
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update

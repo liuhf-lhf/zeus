@@ -1,8 +1,11 @@
 package com.liuhf.user.service.zeususerserivce.service;
 
 import com.liuhf.user.api.dto.ZeusUserDto;
+import com.liuhf.user.service.zeususerserivce.entity.ZeusRole;
 import com.liuhf.user.service.zeususerserivce.entity.ZeusUser;
 import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 /**
  * @author liuhf
@@ -21,5 +24,9 @@ public interface ZeusUserService {
 
     Page<ZeusUser> findAny(String username, String realName, Integer page, Integer pageSize);
 
-    ZeusUser findOneByUsername(String username);
+    ZeusUserDto findOneByUsername(String username);
+
+    boolean userAuthorization(long uid, Integer[] rids);
+
+    List<ZeusRole> findZeusUserRoleOfUser(Long uid);
 }

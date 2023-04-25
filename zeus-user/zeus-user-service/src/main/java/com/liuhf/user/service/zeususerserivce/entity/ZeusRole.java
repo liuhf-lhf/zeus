@@ -33,11 +33,17 @@ public class ZeusRole {
     @Column(name = "update_time",insertable = false,updatable = false)
     private Date updateTime;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "zeus_role_menu",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "menu_id"))
+            joinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "menu_id",referencedColumnName = "id"))
     private Set<ZeusMenu> zeusMenus = new LinkedHashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "zeus_user_role",
+            joinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"))
+    private Set<ZeusMenu> zeusUsers = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -95,6 +101,14 @@ public class ZeusRole {
         this.zeusMenus = zeusMenus;
     }
 
+    public Set<ZeusMenu> getZeusUsers() {
+        return zeusUsers;
+    }
+
+    public void setZeusUsers(Set<ZeusMenu> zeusUsers) {
+        this.zeusUsers = zeusUsers;
+    }
+
     @Override
     public String toString() {
         return "ZeusRole{" +
@@ -105,6 +119,7 @@ public class ZeusRole {
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", zeusMenus=" + zeusMenus +
+                ", zeusUsers=" + zeusUsers +
                 '}';
     }
 }

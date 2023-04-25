@@ -34,6 +34,9 @@ public class Result<T> {
     public static <T> Result<List<T>> success(List<T> data) {
         return success(data, Status.SUCCESS);
     }
+    public static <T,U> Result<List<U>> success(List<T> data,Class<U> cast) {
+        return success(data.stream().map(d->BeanUtil.copyProperties(d,cast)).toList(), Status.SUCCESS);
+    }
     public static <T> Result<Collection<T>> success(Collection<T> data) {
         return success(data, Status.SUCCESS);
     }
