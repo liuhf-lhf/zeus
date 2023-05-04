@@ -1,10 +1,13 @@
 package com.liuhf.ooa.zeusooa.core;
 
+import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liuhf.ooa.zeusooa.entity.ZeusClient;
 import com.liuhf.ooa.zeusooa.repository.ZeusClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.jackson2.SecurityJackson2Modules;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
@@ -12,11 +15,13 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.jackson2.OAuth2AuthorizationServerJackson2Module;
 import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
+import org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat;
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +37,14 @@ public class RegisteredClientRepositoryImpl implements RegisteredClientRepositor
 
     private ZeusClientRepository clientRepository;
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
 
     public RegisteredClientRepositoryImpl(ZeusClientRepository clientRepository) {
@@ -91,7 +104,7 @@ public class RegisteredClientRepositoryImpl implements RegisteredClientRepositor
         builder.clientSettings(ClientSettings.withSettings(clientSettingsMap).build());
 
         Map<String, Object> tokenSettingsMap = parseMap(client.getTokenSettings());
-        builder.tokenSettings(TokenSettings.withSettings(tokenSettingsMap).build());
+        builder.tokenSettings(TokenSettings.withSettings(tokenSettingsMap).authorizationCodeTimeToLive(Duration.ofSeconds(10)).accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED).reuseRefreshTokens(true).refreshTokenTimeToLive(Duration.ofMinutes(90)).accessTokenTimeToLive(Duration.ofHours(1)).build());
 
         return builder.build();
     }
@@ -124,8 +137,8 @@ public class RegisteredClientRepositoryImpl implements RegisteredClientRepositor
 
     private Map<String, Object> parseMap(String data) {
         try {
-            return this.objectMapper.readValue(data, new TypeReference<Map<String, Object>>() {
-            });
+//            return this.objectMapper.readValue(data, new TypeReference<>() {});
+            return JSONUtil.parseObj(data);
         } catch (Exception ex) {
             throw new IllegalArgumentException(ex.getMessage(), ex);
         }

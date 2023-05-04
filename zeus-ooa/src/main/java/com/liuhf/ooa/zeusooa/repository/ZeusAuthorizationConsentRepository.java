@@ -1,9 +1,16 @@
 package com.liuhf.ooa.zeusooa.repository;
 
 import com.liuhf.ooa.zeusooa.entity.ZeusAuthorizationConsent;
-import com.liuhf.ooa.zeusooa.entity.ZeusAuthorizationConsentId;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
 
-public interface ZeusAuthorizationConsentRepository extends JpaRepository<ZeusAuthorizationConsent, ZeusAuthorizationConsentId>, JpaSpecificationExecutor<ZeusAuthorizationConsent> {
+import java.util.Optional;
+
+@Repository
+public interface ZeusAuthorizationConsentRepository extends JpaRepository<ZeusAuthorizationConsent, ZeusAuthorizationConsent.ZeusAuthorizationConsentId> {
+    Optional<ZeusAuthorizationConsent> findByRegisteredClientIdAndPrincipalName(String registeredClientId, String principalName);
+
+    void deleteByRegisteredClientIdAndPrincipalName(String registeredClientId, String principalName);
 }
+
+

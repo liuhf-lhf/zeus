@@ -101,7 +101,7 @@ public class ZeusUserServiceImpl implements ZeusUserService {
     @Override
     @Transactional(readOnly = true)
     public ZeusUserDto findOneByUsername(String username) {
-        ZeusUser user = repository.findZeusUserByUsername(username).orElseThrow(() -> new BusinessException(Status.NO_DATA));
+        ZeusUser user = repository.findZeusUserByUsername(username).orElseThrow(() -> new BusinessException(Status.NULL));
         Set<ZeusRoleDto> roleDtos = user.getZeusRoles().stream().map(r -> new ZeusRoleDto(r.getId(), r.getRoleCode(), r.getRoleName(), r.getStatus(), r.getCreateTime(), r.getUpdateTime())).collect(Collectors.toSet());
         return new ZeusUserDto(user.getId(),
                 user.getUsername(),

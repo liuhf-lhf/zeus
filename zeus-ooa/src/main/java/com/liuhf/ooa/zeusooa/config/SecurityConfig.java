@@ -1,10 +1,5 @@
 package com.liuhf.ooa.zeusooa.config;
 
-/**
- * @author liuhf
- * @date 2023/4/18
- * @since 1.0
- */
 
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -32,6 +27,11 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.UUID;
 
+/**
+ * @author liuhf
+ * @date 2023/4/18
+ * @since 1.0
+ */
 @Configuration
 public class SecurityConfig {
 
@@ -46,8 +46,8 @@ public class SecurityConfig {
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http)
             throws Exception {
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
-        http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
-                .oidc(Customizer.withDefaults());    // Enable OpenID Connect 1.0
+//        http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
+//                .oidc(Customizer.withDefaults());    // Enable OpenID Connect 1.0
         http
                 // Redirect to the login page when not authenticated from the
                 // authorization endpoint
@@ -67,12 +67,13 @@ public class SecurityConfig {
             throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 // Form login handles the redirect to the login page from the
                 // authorization server filter chain
                 .formLogin(Customizer.withDefaults());
-
+        http.cors().disable()
+                .csrf().disable();
         return http.build();
     }
 

@@ -108,8 +108,8 @@ public class ZeusUserController {
      * @return ZeusUserDto
      */
     @GetMapping("fu")
-    public Result<ZeusUserDto> findByUsername(String username) {
-        return Result.success(this.service.findOneByUsername(username));
+    public ZeusUserDto findByUsername(String username) {
+        return this.service.findOneByUsername(username);
     }
 
     /**

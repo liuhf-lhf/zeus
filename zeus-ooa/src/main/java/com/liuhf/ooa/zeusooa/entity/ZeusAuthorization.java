@@ -13,7 +13,7 @@ public class ZeusAuthorization {
     @Column(name = "id", nullable = false)
     private String id;
 
-    @Column(name = "attributes", length = 2000)
+    @Column(name = "attributes", length = 4000)
     private String attributes;
 
     @Column(name = "state", length = 500)

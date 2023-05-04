@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableWebSecurity
-@EnableFeignClients("com.liuhf.ooa.zeusooa.feign")
+@EnableFeignClients("com.liuhf.**.feign")
 public class ZeusOoaApplication {
     private static final Logger logger = LoggerFactory.getLogger(ZeusOoaApplication.class);
 
